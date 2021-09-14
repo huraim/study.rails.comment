@@ -1,0 +1,24 @@
+<br>
+<br>
+<br>
+
+<div class="container">
+  <% @post.each do |post| %>
+  <div>
+    <h1><%= post.title %></h1>
+    <div style="text-align: right;"><%= post.author %></div>
+    <hr>
+    <%= post. content %>
+  </div>
+  <% end %>
+  <a href="/home/create_form">글 쓰기<a>
+</div>
+
+<style>
+  .post {
+    border: 1px;
+    margin: 0 auto;
+    max-width: 1000px;
+    border-radius: 5px;
+  }
+</style>
