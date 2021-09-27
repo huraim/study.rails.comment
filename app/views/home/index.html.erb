@@ -4,21 +4,55 @@
 
 <div class="container">
   <% @post.each do |post| %>
-  <div>
-    <h1><%= post.title %></h1>
-    <div style="text-align: right;"><%= post.author %></div>
-    <hr>
-    <%= post. content %>
-  </div>
+    <div class="post">
+      <h1><%= post.title %></h1>
+      <div class="edit">
+        <a href="/home/update_form/<%= post.id %>">수정</a>
+        <a href="/home/delete/<%= post.id %>">삭제</a>
+      </div>
+      <div style="text-align: right;"><%= post.author %></div>
+      <%= post.content %>
+      <hr>
+
+      <% post.replies.each do |reply| %>
+        <div class="reply">
+          <%= reply.content %>
+          <div class="edit_reply">
+            <a href="/reply/update_form/<%= reply.id %>">수정</a>
+            <a href="/reply/delete/<%= reply.id %>">삭제</a>
+          </div>
+        </div>
+      <% end %>
+      <form action="/reply/create/<%= post.id %>" method="post">
+        <textarea class="form-control" name="content" placeholder="댓글 작성하기"></textarea>
+        <input type="submit" class="btn btn-default" value="댓글 쓰기">
+      </form>
+    </div>
   <% end %>
-  <a href="/home/create_form">글 쓰기<a>
+  <a class="write_btn" href="/home/create_form">글 쓰기<a>
 </div>
 
 <style>
-  .post {
-    border: 1px;
+  .container {
+    text-align: center;
+  }
+  .post, .reply {
+    text-align: left;
+    padding: 30px;
+    border: 1px solid;
     margin: 0 auto;
     max-width: 1000px;
     border-radius: 5px;
+  }
+  .write_btn {
+    margin-top: 16px;
+    display: inline-block;
+    text-align: center;
+  }
+  .edit {
+    float: left;
+  }
+  .edit_reply {
+    float: right;
   }
 </style>

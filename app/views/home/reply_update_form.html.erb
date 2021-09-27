@@ -1,0 +1,5 @@
+<br><br><br>
+<form action="/reply/update/<%= @reply.id %>" method="post">
+  <textarea class="form-control" name="content" placeholder="댓글 수정하기"><%= @reply.content %></textarea>
+  <input type="submit" class="btn btn-default" value="댓글 수정">
+</form>
